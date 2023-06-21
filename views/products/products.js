@@ -1,56 +1,16 @@
 $(document).ready(function() {
-    // Load products from JSON file
-    $.getJSON('products.json', function(data) {
-      var products = data.products;
-      Cards(products);
-  
-      // Filter products on checkbox change
-      $('.filter-group input[type="checkbox"]').change(function() {
-        var selectedFilters = getSelectedFilters();
-        var filteredProducts = filterProducts(products, selectedFilters);
-        Cards(filteredProducts);
-      });
+  // Compile Handlebars template
+  var productCardTemplate = Handlebars.compile($('#productCardTemplate').html());
+
+  // Fetch products from JSON file
+  fetch('EPS.json')
+    .then(response => response.json())
+    .then(data => {
+      // Generate product cards using the template
+      var productCardsHtml = productCardTemplate(data);
+      $('#productCardsContainer').html(productCardsHtml);
+    })
+    .catch(error => {
+      console.log('Error occurred while fetching products.', error);
     });
-  
-    // Function to generate product cards
-    function Cards(products) {
-      var productCardsContainer = $('#productCardsContainer');
-      productCardsContainer.empty();
-  
-      var productCardTemplate = Handlebars.compile($('#productCardTemplate').html());
-      var productCardsHtml = productCardTemplate({ products: products });
-      productCardsContainer.append(productCardsHtml);
-    }
-  
-    // Function to get the selected filters
-    function getSelectedFilters() {
-      var selectedFilters = {};
-  
-      $('.filter-group').each(function() {
-        var filterGroup = $(this);
-        var filterGroupName = filterGroup.find('h6').text();
-        var filterValues = [];
-  
-        filterGroup.find('input[type="checkbox"]:checked').each(function() {
-          filterValues.push($(this).next('label').text());
-        });
-  
-        selectedFilters[filterGroupName] = filterValues;
-      });
-  
-      return selectedFilters;
-    }
-  
-    // Function to filter the products based on selected filters
-    function filterProducts(products, selectedFilters) {
-      return products.filter(function(product) {
-        return Object.keys(selectedFilters).every(function(filterGroup) {
-          var filterValues = selectedFilters[filterGroup];
-          var productValue = product[filterGroup];
-  
-          return filterValues.length === 0 || filterValues.includes(productValue);
-        });
-      });
-    }
-  });
-  
+});
