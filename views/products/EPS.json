@@ -4,7 +4,7 @@
       "title": "Product56665665",
       "description": "Description of Product 1",
       "category": "Category 1",
-      "price": 9.99,
+      "price": "9.99",
       "imagePaths": [
         "image1-1.jpg",
         "image1-2.jpg",
@@ -23,6 +23,38 @@
       ]
     },
     {
+      "title": "Product 3",
+      "description": "Description of Product 3",
+      "category": "Category 1",
+      "price": 29.99,
+      "imagePaths": [
+        "image3-1.jpg",
+        "image3-2.jpg",
+        "image3-3.jpg"
+      ]
+    },
+    {
+      "title": "Product 43",
+      "description": "Description of Product 3",
+      "category": "Category 1",
+      "price": 29.99,
+      "imagePaths": [
+        "image3-1.jpg",
+        "image3-2.jpg",
+        "image3-3.jpg"
+      ]
+    },
+    {
+      "title": "Product 3",
+      "description": "Description of Product 3",
+      "category": "Category 1",
+      "price": 29.99,
+      "imagePaths": [
+        "image3-1.jpg",
+        "image3-2.jpg",
+        "image3-3.jpg"
+      ]
+    },{
       "title": "Product 3",
       "description": "Description of Product 3",
       "category": "Category 1",
